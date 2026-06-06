@@ -6,7 +6,6 @@
     <title>天命最高 · 聖駕臨朝 宣政殿</title>
     <style>
         :root {
-            /* 宮廷配色 */
             --bg-dark: #0f0a06;
             --stage-bg: #1c120c; 
             --accent-gold: #e5b842;
@@ -51,7 +50,6 @@
             z-index: 1;
         }
 
-        /* 👑 頂部 HUD 區域 */
         .top-hud { 
             height: 85px;
             background: linear-gradient(to bottom, #2d1d12 0%, #150d06 100%);
@@ -110,7 +108,6 @@
             box-shadow: 0 3px 6px rgba(0,0,0,0.5);
         }
 
-        /* 🏛️ 朝堂大架構 */
         .court-meeting-container {
             display: flex;
             width: 100%;
@@ -119,7 +116,6 @@
             z-index: 10;
         }
 
-        /* ================= 左側：天子聖駕區 ================= */
         .emperor-side {
             width: 440px;
             height: 100%;
@@ -128,7 +124,6 @@
             padding-right: 10px;
         }
 
-        /* 📜 聖旨下旨提示框 */
         .emperor-requirement-box {
             position: relative;
             margin-top: 10px;
@@ -149,7 +144,6 @@
         .req-title { font-size: 1.15rem; font-weight: bold; color: #4a1a05; margin-bottom: 8px; border-bottom: 1px solid rgba(74,26,5,0.2); padding-bottom: 4px; }
         .req-text { font-size: 1.05rem; line-height: 1.6; color: #2e1802; font-weight: bold; text-align: justify; }
 
-        /* 👑 天子向量圖容器 */
         .emperor-live-container {
             position: absolute;
             bottom: -10px;
@@ -169,6 +163,7 @@
         .emperor-svg-throne {
             width: 100%;
             height: 90%;
+            object-fit: contain;
             filter: drop-shadow(0 15px 25px rgba(0,0,0,0.9));
         }
         @keyframes empFloating {
@@ -194,7 +189,6 @@
             width: max-content;
         }
 
-        /* 📖 起居注 */
         .chronicle-container-left {
             position: absolute; 
             bottom: 15px; 
@@ -230,7 +224,6 @@
         .chronicle-title { font-size: 1.1rem; font-weight: bold; color: var(--bright-gold); margin-bottom: 8px; border-bottom: 1px solid #4a3116; padding-bottom: 4px; }
         .chronicle-content { font-size: 0.9rem; line-height: 1.7; color: #e5dec9; overflow-y: auto; flex: 1; text-align: justify; }
 
-        /* ================= 右側：群臣聽政區 ================= */
         .advisors-side {
             flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding-left: 15px; position: relative;
         }
@@ -262,7 +255,6 @@
         }
         .advisor-silhouette:hover { filter: brightness(1.1) drop-shadow(0 10px 20px rgba(0,0,0,0.9)); transform: translateY(-5px); }
 
-        /* 大臣專屬 SVG 造型繪製 */
         .advisor-svg-fig {
             width: 120px;
             height: 160px;
@@ -277,7 +269,6 @@
 
         .advisor-shadow-floor { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); width: 120px; height: 10px; background: rgba(0, 0, 0, 0.7); border-radius: 50%; filter: blur(3px); pointer-events: none; }
 
-        /* 📜 大臣奏摺面板 */
         .proposal-scroll-popup { 
             position: absolute; top: 10px; left: 15px; right: 0; height: 210px; background: var(--paper-texture), linear-gradient(to bottom, #fffef9 0%, #f7f0dc 100%); color: #221100; padding: 18px 25px; box-shadow: 0 15px 45px rgba(0,0,0,0.9); display: none; flex-direction: column; justify-content: space-between; z-index: 150; border-left: 12px solid #e6dfcb; border-right: 12px solid #e6dfcb; border-top: 4px solid var(--soft-gold); border-bottom: 4px solid var(--soft-gold); outline: 2px solid #2d1d12;
         }
@@ -293,7 +284,6 @@
             position: absolute; top: 5px; right: 25px; width: 80px; height: 80px; border: 4px double #b91c1c; color: #b91c1c; font-size: 1.3rem; font-weight: 900; display: flex; align-items: center; justify-content: center; transform: rotate(-12deg); opacity: 0; pointer-events: none; z-index: 2;
         }
 
-        /* 📜 「天下邸報」過場結算面板 */
         .transition-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(8, 4, 2, 0.9); z-index: 600; display: none; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease-out;
@@ -317,7 +307,6 @@
         @keyframes sealPlunge { 0% { transform: rotate(-12deg) scale(2); opacity: 0; } 100% { transform: rotate(-12deg) scale(0.7); opacity: 0.8; } }
         @keyframes flashPop { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-        /* 🎮 載入幕 */
         .loading-screen {
             position: absolute; top:0; left:0; width:100%; height:100%; background: #0c0805; z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 3px solid var(--soft-gold);
         }
@@ -385,19 +374,9 @@
                     <div class="req-text" id="req-text">天下初定，百萬主力重兵仍握在開國功臣手中。如何收攏地方兵權引發朝堂明爭暗鬥...</div>
                 </div>
 
+                <!-- ✅ 已替換為圖片 -->
                 <div class="emperor-live-container" id="emp-container">
-                    <svg class="emperor-svg-throne" viewBox="0 0 200 200">
-                        <path d="M40 160 L40 60 Q40 30 100 30 Q160 30 160 60 L160 160 Z" fill="#4a0d0d" stroke="#ffd700" stroke-width="3"/>
-                        <circle cx="100" cy="60" r="25" fill="#8a1a1a" stroke="#ffd700" stroke-width="2"/>
-                        <circle cx="50" cy="40" r="8" fill="#ffd700"/>
-                        <circle cx="150" cy="40" r="8" fill="#ffd700"/>
-                        <path d="M70 160 L70 110 Q70 85 100 85 Q130 85 130 110 L130 160 Z" fill="#1a1105" stroke="#e5b842" stroke-width="2"/>
-                        <circle cx="100" cy="70" r="14" fill="#1a1105"/>
-                        <path d="M80 54 L120 54 L115 46 L85 46 Z" fill="#ffd700"/>
-                        <path d="M82 54 L82 62 M90 54 L90 64 M100 54 L100 65 M110 54 L110 64 M118 54 L118 62" stroke="#fff" stroke-width="1"/>
-                        <path d="M30 160 L55 110 L70 110 L70 160 Z" fill="#6e1212" stroke="#ffd700" stroke-width="1.5"/>
-                        <path d="M170 160 L145 110 L130 110 L130 160 Z" fill="#6e1212" stroke="#ffd700" stroke-width="1.5"/>
-                    </svg>
+                    <img class="emperor-svg-throne" src="assets/emperor.png" alt="天子聖駕" />
                     <div class="emperor-name-badge">天子聖駕</div>
                 </div>
 
@@ -425,7 +404,6 @@
     </div>
 
     <script>
-        // 擴充事件庫，讓遊戲具備高度可玩性
         const DATA_EVENTS = [
             {
                 title: "⚔️ 天下初定 · 兵權分配與大軍編制",
@@ -457,7 +435,6 @@
             }
         ];
 
-        // 大臣專屬 SVG 樣式模板
         const officials = {
             civil: { 
                 role: "內閣首輔", 
@@ -560,7 +537,6 @@
             updateHUD();
             if (checkGameStatus()) return;
 
-            // 隨機抽取未使用的事件，若全用過則重置
             if(usedEvents.length === DATA_EVENTS.length) usedEvents = [];
             let availableEvents = DATA_EVENTS.filter((_, idx) => !usedEvents.includes(idx));
             let randomIdx = Math.floor(Math.random() * availableEvents.length);
@@ -653,7 +629,6 @@
                 stats.defense += selectedEffect.defense;
                 stats.culture += selectedEffect.culture || 0;
 
-                // 記錄進起居注
                 const logBox = document.getElementById("chronicle-log");
                 logBox.innerHTML = `【${getImperialYear(round)}紀事】 准奏${currentOfficerName}之策。${selectedSummary}<br><br>` + logBox.innerHTML;
 
